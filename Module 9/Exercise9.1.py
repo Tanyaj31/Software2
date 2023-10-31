@@ -2,8 +2,8 @@ class Car:
     def __init__(self, registration_number, maximum_speed):
         self.registration_number = registration_number
         self.maximum_speed = maximum_speed
-        self.current_speed = 0
-        self.travelled_distance = 0
+        self.current_speed = 0   #This will initialize the current_speed to 0
+        self.travelled_distance = 0  #This will initialize the travelled_distance to 0
 
     def show(self):
         print("The registration number is:", self.registration_number)
@@ -13,4 +13,4 @@ class Car:
 
 # Creating an object
 c = Car("ABC-123", 142)
-c.show()
+c.show()    #This will print all of the car's properties

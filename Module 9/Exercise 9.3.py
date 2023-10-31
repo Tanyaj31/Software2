@@ -2,53 +2,30 @@ class Car:
     def __init__(self, registration_number, maximum_speed):
         self.registration_number = registration_number
         self.maximum_speed = maximum_speed
-        self.current_speed = 0
-        self.travelled_distance = 0
+        self.current_speed = 0      #This will initialize the current_speed to 0
+        self.travelled_distance = 2000  # Set the initial traveled distance to 2000 km
 
     def show(self):
-        print("Register Number is:", self.registration_number)
-        print("Maximum Speed is:", self.maximum_speed)
-        print("Current Speed is:", self.current_speed)
-        print("Travel Distance is:", self.travelled_distance)
+        print("The registration number is:", self.registration_number)
+        print(f"The maximum speed is:", self.maximum_speed, "km/h")
+        print(f"The current speed is:", self.current_speed, "km/h")
+        print(f"The travelled distance is:", self.travelled_distance, "km")
 
-class NewCar(Car):
-    def __init__(self):
-        super().__init__("ABC-123", 142)
-
-    def accelerate(self, speed):
-        if speed < 0:
-            print("Speed cannot be negative.")
+    def accelerate(self, change):
+        if change < 0:
+            self.current_speed = max(self.current_speed + change, 0)
         else:
-            self.current_speed = min(self.current_speed + speed, self.maximum_speed)
-            self.current_speed = max(self.current_speed, 0)
+            self.current_speed = min(self.current_speed + change, self.maximum_speed)
+
+    def drive(self, hours):
+        self.travelled_distance += self.current_speed * hours
 
     def show_speed(self):
-        print("Current speed of Car is:", self.current_speed)
-
-    def brake_method(self, bspeed):
-        self.accelerate(bspeed)
-
-    def drive(self, hrs):
-        if self.current_speed > 0:
-            additional_distance = self.current_speed * hrs
-            self.travelled_distance += additional_distance
-        else:
-            print("The car is not moving, so no distance is added.")
+        print("The current speed of the car is:", self.current_speed, "km/h")
 
 # Creating an object
-c = NewCar()
+c = Car("ABC-123", 142)
 
-c.accelerate(30)
-c.show_speed()
-
-c.accelerate(70)
-c.show_speed()
-
-c.accelerate(50)
-c.show_speed()
-
-c.brake_method(-200)
-c.show_speed()
-
-c.drive(1.5)
-c.show_speed()
+c.current_speed = 60  # On setting the current speed to 60 km/h
+c.drive(1.5)  # For driving at a constant speed for 1.5 hours
+c.show()
